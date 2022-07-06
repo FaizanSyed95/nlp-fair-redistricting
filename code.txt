@@ -1,0 +1,14 @@
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+import pandas as pd
+
+df = pd.read_csv(check.csv)
+
+X = df[['Channel 1 Last (F)', 'Channel 1 Ave. (F)']]
+y = df['Channel 1 Max. (F)']
+X_train, X_test, y_train, y_test= train_test_split(X, y, test_size=0.2)
+df = df.dropna()
+
+regressor = LinearRegression()
+regressor.fit(X_train, y_train)
+y_pred = regressor.predict(X_test)
